@@ -1,0 +1,33 @@
+﻿@model ProcessListAllDto
+@{
+    ViewData["Title"] = "GetDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (Model.Reports.Count > 0)
+{
+    <a asp-action="GetExcel" asp-route-id="@Model.Id" target="_blank" class="btn btn-outline-dark btn-sm my-2"><i class="fa-solid fa-file-excel"></i> Excel</a>
+    <a asp-action="GetPdf" asp-route-id="@Model.Id" target="_blank" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-file-pdf"></i> Pdf</a>
+    <table class="table table-hover table-sm mt-2 text-center table-bordered">
+        <tr>
+            <th colspan="2">@Model.AppUser.Name @Model.AppUser.Surname personeliniz @Model.Name görevine yazmış olduğu raporlar</th>
+        </tr>
+        <tr>
+            <th>Tanım</th>
+            <th>Detay</th>
+        </tr>
+        @foreach (var item in Model.Reports)
+        {
+            <tr>
+                <td>@item.Definition</td>
+                <td>@item.Details</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="border border-dark mt-2 text-center">
+        @Model.AppUser.Name @Model.AppUser.Surname personelimiz şuanda @Model.Name üzerinde çalışıyor henüz bir rapor yazmamıştır.
+    </div>
+}

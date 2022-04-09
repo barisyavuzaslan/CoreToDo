@@ -1,0 +1,47 @@
+﻿@model AppUserAddDto
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_StandartLayout.cshtml";
+}
+
+<form class="w-75 mt-3 mx-auto p-3 shadow" method="post" asp-action="Register" asp-controller="Home">
+    <h4>Kayıt Ol</h4>
+    <div class="form-group">
+        <label asp-for="Name">Ad :</label>
+        <span class="text-danger" asp-validation-for="Name"></span>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname">Soyad :</label>
+        <span class="text-danger" asp-validation-for="Surname"></span>
+        <input asp-for="Surname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email :</label>
+        <span class="text-danger" asp-validation-for="Email"></span>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UserName">Kullanıcı Adı :</label>
+        <span class="text-danger" asp-validation-for="UserName"></span>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password">Parola :</label>
+        <span class="text-danger" asp-validation-for="Password"></span>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ConfirmPassword">Parola Tekrar :</label>
+        <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+
+    </div>
+    <div class="mt-2">
+        <a asp-action="Index" class="btn btn-warning btn-sm">Vazgeç</a>
+        <button type="submit" class="btn btn-info btn-sm">Kayıt Et</button>
+    </div>
+</form>
+

@@ -1,0 +1,64 @@
+﻿@model AssignStaffListDto
+@{
+    ViewData["Title"] = "AssignPersonal";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="text-center lead pt-2">Görev Bilgileri</h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@Model.process.Name</h5>
+                <p class="card-text">
+                    @Model.process.Desc
+                </p>
+                <p class="card-text">
+                    <strong>Aciliyet Durumu: </strong><span class="badge bg-info">@Model.process.Urgency.Definition</span>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card mb-3 shadow">
+            <div class="card-header">
+                <h4 class="card-title lead pt-2"> Personel Bilgileri</h4>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="~/img/@Model.appUser.Picture" class="card-img" style="height:10rem" alt="@Model.appUser.Name">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.appUser.Name @Model.appUser.Surname </h5>
+                        <p class="card-text">
+                            <getProcessAppUserId app-user-id="@Model.appUser.Id"></getProcessAppUserId>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">@Model.appUser.Email</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <form asp-action="AssignStaff" method="post">
+            <p class="lead">
+                Yukarıdaki göreve ilgili personel atanacaktır. Bu işlemi gerçekleştirmek istediğinizden emin misiniz?
+            </p>
+            <div class="form-group text-center">
+                <a asp-action="AssignStaff" asp-route-id="@Model.process.Id" class="btn btn-danger"><i class="fa-solid fa-circle-xmark"></i> Hayır Vazgeç</a>
+                <input type="hidden" name="UserId" value="@Model.appUser.Id" />
+                <input type="hidden" name="ProcessId" value="@Model.process.Id" />
+                <button type="submit" class="btn btn-info"><i class="fa-solid fa-square-check mr-2"></i> Evet Görevlendir</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+

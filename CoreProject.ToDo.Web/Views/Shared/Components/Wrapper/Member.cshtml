@@ -1,0 +1,30 @@
+﻿@model AppUserListDto
+
+@{
+    string active = string.Empty;
+    active = TempData["Active"]?.ToString();
+
+
+}
+<div class="border " id="sidebar-wrapper">
+    <div class="sidebar-heading border-bottom">
+        <img src="~/img/@Model.Picture" alt="@Model.Name" style="height:10rem" class="w-100 img-thumbnail" />
+    </div>
+    <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action  @(active=="home"?"active":"")   p-3" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-3"></i>Ana Sayfa</a>
+
+        <a class="list-group-item list-group-item-action  @(active=="incommingworks"?"active":"")   p-3" asp-action="Index" asp-controller="ProcessOrders"><i class="fa-solid fa-circle-arrow-down me-3"></i> Gelen İş Emirleri</a>
+        <a class="list-group-item list-group-item-action @(active=="process"?"active":"")  p-3" asp-action="Index" asp-controller="Process"><i class="fa-solid fa-circle-arrow-up me-3"></i> Tamamlanan İşler</a>
+        <a class="list-group-item list-group-item-action  @(active=="notification"?"active":"")   p-3" asp-action="Index" asp-controller="Notification">
+            <i class="fa-solid fa-bell me-3"></i>
+
+            @if (ViewBag.NotCount > 0)
+            {
+                <sub class="badge bg-info rounded-pill position-absolute" style="bottom:0.62rem;left:1.7rem!important"><small>@ViewBag.NotCount</small></sub>
+            }
+            Bildirimler
+        </a>
+        <a class="list-group-item list-group-item-action  @(active=="profile"?"active":"")  p-3" asp-action="Index" asp-controller="Profile"><i class="fa-solid fa-user me-3"></i> Profilim</a>
+        <a asp-area="" asp-action="LogOut" asp-controller="Home" class="list-group-item list-group-item-action   p-3"><i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Çıkış Yap</a>
+    </div>
+</div>
